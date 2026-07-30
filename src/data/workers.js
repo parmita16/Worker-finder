@@ -1,5 +1,3 @@
-// Mock data standing in for a backend/database.
-// Each worker has everything the details page (Day 4) will need too.
 const workers = [
   {
     id: 1,
@@ -16,7 +14,6 @@ const workers = [
       { name: "Bikash T.", rating: 4, comment: "Good work, arrived a bit late but quality was worth it." },
     ],
   },
-  
   {
     id: 2,
     name: "Luffy Gurung",
@@ -187,5 +184,4 @@ const workers = [
   ],
 },
 ];
-
 export default workers;
