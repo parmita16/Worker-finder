@@ -6,7 +6,6 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import AuthModal from "../components/AuthModal";
-
 const trades = [
   { name: "Carpenter", icon: Hammer },
   { name: "Plumber", icon: Wrench },
@@ -17,31 +16,24 @@ const trades = [
   { name: "Tailor", icon: Scissors },
   { name: "Mechanic", icon: Car },
 ];
-
 function WorkerRegister() {
   const navigate = useNavigate();
   const [showAuth, setShowAuth] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
   const [form, setForm] = useState({
     name: "",
     trade: "",
     experience: "",
     address: "",
     phone: "",
-    photoPreview: null, // just a preview URL, since we have no backend to upload to
+    photoPreview: null, 
   });
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-
   const handleTradeSelect = (name) => {
     setForm({ ...form, trade: name });
   };
-
-  // reads the chosen image file and turns it into a local preview URL
-  // (this is only a preview - without a backend, nothing is actually uploaded anywhere)
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -49,19 +41,13 @@ function WorkerRegister() {
       setForm({ ...form, photoPreview: previewUrl });
     }
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // save to localStorage the same way AuthModal does, under a separate
-    // "workerListings" key so Day 3's mock workers.js stays untouched
     const existingListings = JSON.parse(localStorage.getItem("workerListings")) || [];
     existingListings.push({ ...form, id: Date.now() });
     localStorage.setItem("workerListings", JSON.stringify(existingListings));
-
     setSubmitted(true);
   };
-
   if (submitted) {
     return (
       <div className="bg-sky-light dark:bg-navy-dark text-navy dark:text-sky-light min-h-screen">
@@ -86,11 +72,9 @@ function WorkerRegister() {
       </div>
     );
   }
-
   return (
     <div className="bg-sky-light dark:bg-navy-dark text-navy dark:text-sky-light min-h-screen">
       <Navbar onLoginClick={() => setShowAuth(true)} />
-
       <div className="max-w-2xl mx-auto px-5 sm:px-8 py-14 sm:py-20">
         <div className="text-center mb-10">
           <p className="text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold text-amber mb-4">
@@ -103,12 +87,11 @@ function WorkerRegister() {
             A few details is all it takes for customers to start finding you.
           </p>
         </div>
-
         <form
           onSubmit={handleSubmit}
           className="ticket-edge relative bg-white dark:bg-navy rounded-t-2xl rounded-b-md shadow-sm p-6 sm:p-10 space-y-6"
         >
-          {/* photo upload */}
+          {}
           <div className="flex items-center gap-5">
             <label
               htmlFor="photo-upload"
@@ -134,8 +117,7 @@ function WorkerRegister() {
               </p>
             </div>
           </div>
-
-          {/* name + phone */}
+          {}
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="text-xs font-semibold text-navy/60 dark:text-sky-light/60 mb-1.5 block">
@@ -166,8 +148,7 @@ function WorkerRegister() {
               />
             </div>
           </div>
-
-          {/* trade picker */}
+          {}
           <div>
             <label className="text-xs font-semibold text-navy/60 dark:text-sky-light/60 mb-2.5 block">
               Your trade
@@ -193,8 +174,7 @@ function WorkerRegister() {
               })}
             </div>
           </div>
-
-          {/* experience + address */}
+          {}
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="text-xs font-semibold text-navy/60 dark:text-sky-light/60 mb-1.5 block">
@@ -226,7 +206,6 @@ function WorkerRegister() {
               />
             </div>
           </div>
-
           <button
             type="submit"
             disabled={!form.trade}
@@ -236,10 +215,8 @@ function WorkerRegister() {
           </button>
         </form>
       </div>
-
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </div>
   );
 }
-
 export default WorkerRegister;
