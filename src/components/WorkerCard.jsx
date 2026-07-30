@@ -2,17 +2,14 @@ import { useState } from "react";
 import { Star, MapPin, Briefcase, Phone, Heart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { isFavorite, toggleFavorite } from "../utils/favorites";
-
 function WorkerCard({ worker }) {
   const navigate = useNavigate();
   const [favorited, setFavorited] = useState(isFavorite(worker.id));
-
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
     toggleFavorite(worker.id);
     setFavorited(!favorited);
   };
-
   return (
     <div
       className="ticket-edge relative bg-white dark:bg-navy rounded-t-2xl rounded-b-md shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-200 p-6 cursor-pointer border border-sky-deep/[0.04] dark:border-white/[0.04]"
@@ -44,7 +41,6 @@ function WorkerCard({ worker }) {
           </p>
         </div>
       </div>
-
       <div className="mt-4 flex items-center gap-1.5 text-sm">
         <Star size={15} className="text-amber fill-amber" />
         <span className="font-semibold">{worker.rating || "New"}</span>
@@ -54,7 +50,6 @@ function WorkerCard({ worker }) {
           </span>
         )}
       </div>
-
       <div className="mt-4 space-y-2 text-sm text-navy/65 dark:text-sky-light/65">
         <p className="flex items-center gap-2.5">
           <Briefcase size={14} className="text-sky-deep dark:text-sky shrink-0" />
@@ -65,7 +60,6 @@ function WorkerCard({ worker }) {
           <span className="truncate">{worker.address}</span>
         </p>
       </div>
-
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -78,5 +72,4 @@ function WorkerCard({ worker }) {
     </div>
   );
 }
-
 export default WorkerCard;
