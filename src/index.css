@@ -1,18 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 html {
   scroll-behavior: smooth;
 }
-
 body {
   font-family: "Inter", sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 .ticket-edge {
   position: relative;
 }
@@ -26,7 +22,6 @@ body {
   border-bottom: 2px dashed currentColor;
   opacity: 0.2;
 }
-
 .ticket-notch::before,
 .ticket-notch::after {
   content: "";
@@ -39,14 +34,10 @@ body {
 }
 .ticket-notch::before { left: -8px; }
 .ticket-notch::after { right: -8px; }
-
-/* visible keyboard focus, kept in the brand color instead of the browser default blue */
 :focus-visible {
   outline: 2px solid #2E9BE6;
   outline-offset: 2px;
 }
-
-/* respect users who've asked for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
