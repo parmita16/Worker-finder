@@ -2,13 +2,11 @@ import { Sun, Moon, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
-
 function Navbar({ onLoginClick }) {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
   const scrollTo = (id) => {
     setMenuOpen(false);
     if (location.pathname !== "/") {
@@ -20,9 +18,7 @@ function Navbar({ onLoginClick }) {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     }
   };
-
   const isActive = (path) => location.pathname === path;
-
   return (
     <nav className="sticky top-0 z-40 backdrop-blur-md bg-white/85 dark:bg-navy-dark/85 border-b border-sky-deep/8 dark:border-white/8">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 h-[68px] flex items-center justify-between">
@@ -32,7 +28,6 @@ function Navbar({ onLoginClick }) {
         >
           Sewa
         </Link>
-
         <div className="hidden md:flex items-center gap-1 text-sm font-medium">
           <Link
             to="/about"
@@ -61,7 +56,6 @@ function Navbar({ onLoginClick }) {
             How it works
           </button>
         </div>
-
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleTheme}
@@ -77,12 +71,10 @@ function Navbar({ onLoginClick }) {
             Log in
           </button>
         </div>
-
         <button className="md:hidden text-navy dark:text-sky-light" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X /> : <Menu />}
         </button>
       </div>
-
       {menuOpen && (
         <div className="md:hidden px-5 pb-5 flex flex-col gap-1 bg-white dark:bg-navy-dark border-t border-sky-deep/8 dark:border-white/8">
           <Link
@@ -124,5 +116,4 @@ function Navbar({ onLoginClick }) {
     </nav>
   );
 }
-
 export default Navbar;
