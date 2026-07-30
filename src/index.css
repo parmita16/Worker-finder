@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,7 +13,6 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* the recurring "service ticket" motif - a dashed tear-edge under any card that uses it */
 .ticket-edge {
   position: relative;
 }
@@ -24,10 +24,9 @@ body {
   bottom: -1px;
   height: 0;
   border-bottom: 2px dashed currentColor;
-  opacity: 0.25;
+  opacity: 0.2;
 }
 
-/* small notches on either side of the ticket, like a real stub */
 .ticket-notch::before,
 .ticket-notch::after {
   content: "";
@@ -38,9 +37,20 @@ body {
   border-radius: 9999px;
   background: inherit;
 }
-.ticket-notch::before {
-  left: -8px;
+.ticket-notch::before { left: -8px; }
+.ticket-notch::after { right: -8px; }
+
+/* visible keyboard focus, kept in the brand color instead of the browser default blue */
+:focus-visible {
+  outline: 2px solid #2E9BE6;
+  outline-offset: 2px;
 }
-.ticket-notch::after {
-  right: -8px;
+
+/* respect users who've asked for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

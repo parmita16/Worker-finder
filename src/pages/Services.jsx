@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
-  Hammer, Wrench, Zap, Footprints, PaintBucket, HardHat, Scissors, Car, SearchX,
+  Hammer, Wrench, Zap, Footprints, PaintBucket, HardHat, Scissors, Car,
+  SearchX, Search,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import AuthModal from "../components/AuthModal";
 import WorkerCard from "../components/WorkerCard";
-import workers from "../data/workers";
+import { getAllWorkers } from "../utils/getAllWorkers";
 
-// same trade list as Home, kept in one place would be even better -
-// but duplicating here keeps Day 3 self-contained
 const trades = [
   { name: "Carpenter", icon: Hammer },
   { name: "Plumber", icon: Wrench },
@@ -25,9 +24,13 @@ function Services() {
   const [showAuth, setShowAuth] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedTrade, setSelectedTrade] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("rating"); // "rating" | "experience" | "name"
 
-  // if the user arrived via /services?trade=Plumber (from Home page tiles),
-  // pre-select that trade on load
+  // read merged workers fresh each time this page loads, so newly
+  // registered workers show up without needing a backend
+  const allWorkers = useMemo(() => getAllWorkers(), []);
+
   useEffect(() => {
     const tradeFromUrl = searchParams.get("trade");
     if (tradeFromUrl) setSelectedTrade(tradeFromUrl);
@@ -35,18 +38,39 @@ function Services() {
 
   const handleSelectTrade = (name) => {
     setSelectedTrade(name);
-    setSearchParams({ trade: name }); // keeps the URL shareable/bookmarkable
+    setSearchParams({ trade: name });
   };
 
-  const filteredWorkers = selectedTrade
-    ? workers.filter((w) => w.trade === selectedTrade)
-    : [];
+  const filteredWorkers = useMemo(() => {
+    if (!selectedTrade) return [];
+
+    let result = allWorkers.filter((w) => w.trade === selectedTrade);
+
+    // search by name or address
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase();
+      result = result.filter(
+        (w) =>
+          w.name.toLowerCase().includes(term) ||
+          w.address.toLowerCase().includes(term)
+      );
+    }
+
+    // sort
+    result = [...result].sort((a, b) => {
+      if (sortBy === "rating") return b.rating - a.rating;
+      if (sortBy === "experience") return b.experience - a.experience;
+      if (sortBy === "name") return a.name.localeCompare(b.name);
+      return 0;
+    });
+
+    return result;
+  }, [allWorkers, selectedTrade, searchTerm, sortBy]);
 
   return (
     <div className="bg-sky-light dark:bg-navy-dark text-navy dark:text-sky-light min-h-screen">
       <Navbar onLoginClick={() => setShowAuth(true)} />
 
-      {/* HEADER */}
       <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-20 pb-10 text-center">
         <p className="text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold text-amber mb-5">
           Services
@@ -59,8 +83,7 @@ function Services() {
         </p>
       </section>
 
-      {/* TRADE PICKER */}
-      <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-14">
+      <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-10">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
           {trades.map(({ name, icon: Icon }) => {
             const isActive = selectedTrade === name;
@@ -82,7 +105,36 @@ function Services() {
         </div>
       </section>
 
-      {/* RESULTS */}
+      {/* search + sort - only shown once a trade is picked */}
+      {selectedTrade && (
+        <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-8">
+          <div className="flex flex-col sm:flex-row gap-3">
+            <div className="relative flex-1">
+              <Search
+                size={16}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-navy/40 dark:text-sky-light/40"
+              />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search by name or area..."
+                className="w-full pl-10 pr-4 py-3 rounded-lg border border-sky-deep/15 dark:border-white/15 bg-white dark:bg-navy focus:outline-none focus:ring-2 focus:ring-sky text-sm"
+              />
+            </div>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-4 py-3 rounded-lg border border-sky-deep/15 dark:border-white/15 bg-white dark:bg-navy text-sm font-medium focus:outline-none focus:ring-2 focus:ring-sky"
+            >
+              <option value="rating">Sort by rating</option>
+              <option value="experience">Sort by experience</option>
+              <option value="name">Sort by name</option>
+            </select>
+          </div>
+        </section>
+      )}
+
       <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-24">
         {!selectedTrade && (
           <div className="text-center py-16 text-navy/50 dark:text-sky-light/50">
@@ -94,10 +146,10 @@ function Services() {
           <div className="text-center py-16">
             <SearchX size={32} className="mx-auto text-navy/30 dark:text-sky-light/30 mb-4" />
             <p className="font-display text-lg">
-              No {selectedTrade.toLowerCase()}s listed yet.
+              No {selectedTrade.toLowerCase()}s match your search.
             </p>
             <p className="text-sm text-navy/50 dark:text-sky-light/50 mt-1">
-              Try another trade, or check back soon.
+              Try clearing the search or picking another trade.
             </p>
           </div>
         )}

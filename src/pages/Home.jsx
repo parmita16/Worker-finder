@@ -59,7 +59,7 @@ function Home() {
               Register as a worker
             </button>
           </div>
-
+            
           {/* trust strip - styled as ticket stubs */}
           <div className="mt-16 grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto">
             {[
@@ -208,14 +208,20 @@ function Home() {
         <p className="mt-4 text-navy/60 dark:text-sky-light/60">
           Whether you need a hand today or want to offer one.
         </p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            onClick={() => setShowAuth(true)}
-            className="px-8 py-3.5 rounded-full bg-sky text-white font-semibold shadow-lg shadow-sky/30 hover:bg-sky-deep transition-all"
-          >
-            Get started
-          </button>
-        </div>
+        <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center">
+  <button
+    onClick={() => setShowAuth(true)}
+    className="px-8 py-3.5 rounded-full bg-sky text-white font-semibold shadow-soft-lg hover:bg-sky-deep hover:-translate-y-0.5 active:translate-y-0 transition-all"
+  >
+    Find a worker
+  </button>
+  <button
+    onClick={() => navigate("/register")}
+    className="px-8 py-3.5 rounded-full bg-white dark:bg-navy border-2 border-amber text-amber font-semibold shadow-soft hover:bg-amber hover:text-white hover:-translate-y-0.5 active:translate-y-0 transition-all"
+  >
+    Register as a worker
+  </button>
+</div>
       </section>
 
       {/* FOOTER */}

@@ -16,6 +16,7 @@ const workers = [
       { name: "Bikash T.", rating: 4, comment: "Good work, arrived a bit late but quality was worth it." },
     ],
   },
+  
   {
     id: 2,
     name: "Luffy Gurung",
@@ -115,6 +116,76 @@ const workers = [
       { name: "Ashok G.", rating: 4, comment: "Diagnosed the engine issue fast." },
     ],
   },
+  {
+  id: 9,
+  name: "Denji Poudel",
+  trade: "Electrician",
+  experience: 6,
+  address: "Chabahil, Kathmandu",
+  phone: "+977 98XXXXXXX9",
+  photo: "https://i.pravatar.cc/150?img=22",
+  rating: 4.6,
+  reviewCount: 18,
+  reviews: [
+    { name: "Manisha K.", rating: 5, comment: "Fixed our fuse box same day, very reliable." },
+  ],
+},
+{
+  id: 10,
+  name: "Sakura Basnet",
+  trade: "Tailor",
+  experience: 5,
+  address: "New Baneshwor, Kathmandu",
+  phone: "+977 98XXXXXX10",
+  photo: "https://i.pravatar.cc/150?img=47",
+  rating: 4.7,
+  reviewCount: 22,
+  reviews: [
+    { name: "Puja S.", rating: 5, comment: "Stitched a perfect blouse in two days." },
+  ],
+},
+{
+  id: 11,
+  name: "Usopp Lama",
+  trade: "Carpenter",
+  experience: 11,
+  address: "Jorpati, Kathmandu",
+  phone: "+977 98XXXXXX11",
+  photo: "https://i.pravatar.cc/150?img=53",
+  rating: 4.9,
+  reviewCount: 47,
+  reviews: [
+    { name: "Nabin R.", rating: 5, comment: "Custom wardrobe came out better than expected." },
+  ],
+},
+{
+  id: 12,
+  name: "Jinbei Chettri",
+  trade: "Painter",
+  experience: 3,
+  address: "Sinamangal, Kathmandu",
+  phone: "+977 98XXXXXX12",
+  photo: "https://i.pravatar.cc/150?img=38",
+  rating: 4.2,
+  reviewCount: 9,
+  reviews: [
+    { name: "Roshan T.", rating: 4, comment: "Good work, slightly delayed start." },
+  ],
+},
+{
+  id: 13,
+  name: "Ace Shakya",
+  trade: "Mechanic",
+  experience: 14,
+  address: "Kirtipur, Kathmandu",
+  phone: "+977 98XXXXXX13",
+  photo: "https://i.pravatar.cc/150?img=61",
+  rating: 4.8,
+  reviewCount: 55,
+  reviews: [
+    { name: "Sneha D.", rating: 5, comment: "Solved an engine issue two other shops missed." },
+  ],
+},
 ];
 
 export default workers;

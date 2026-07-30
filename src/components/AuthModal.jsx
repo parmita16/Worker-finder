@@ -29,7 +29,7 @@ function AuthModal({ onClose }) {
       );
       if (foundUser) {
         localStorage.setItem("currentUser", JSON.stringify(foundUser));
-        setMessage(`Welcome back, ${foundUser.name}! (Services page arrives Day 3)`);
+        setMessage(`Welcome back, ${foundUser.name}!`);
       } else {
         setMessage("Invalid email or password.");
       }

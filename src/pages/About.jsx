@@ -4,15 +4,12 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import AuthModal from "../components/AuthModal";
-
 function About() {
   const [showAuth, setShowAuth] = useState(false);
-
   return (
     <div className="bg-sky-light dark:bg-navy-dark text-navy dark:text-sky-light min-h-screen">
       <Navbar onLoginClick={() => setShowAuth(true)} />
-
-      {/* HEADER */}
+      {}
       <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-24 pb-14 sm:pb-16 text-center">
         <p className="text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold text-amber mb-5">
           About Sewa
@@ -27,8 +24,7 @@ function About() {
           and helps workers find genuine customers.
         </p>
       </section>
-
-      {/* THE PROBLEM / MISSION */}
+      {}
       <section className="max-w-4xl mx-auto px-5 sm:px-8 py-14 sm:py-16">
         <div className="ticket-edge relative bg-white dark:bg-navy rounded-t-2xl rounded-b-md shadow-sm p-8 sm:p-12">
           <p className="text-xs tracking-widest uppercase font-semibold text-amber mb-4">
