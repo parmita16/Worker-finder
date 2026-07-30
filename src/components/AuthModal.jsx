@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { X, Stamp } from "lucide-react";
 function AuthModal({ onClose }) {
-  const [role, setRole] = useState(null); // "customer" | "worker"
+  const [role, setRole] = useState(null); 
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState({
     name: "", email: "", password: "", phone: "", profession: "",
@@ -35,14 +35,12 @@ function AuthModal({ onClose }) {
       }
     }
   };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-navy-dark/60 backdrop-blur-sm">
       <div className="relative w-full max-w-md">
-        {/* the ticket card itself */}
+        {}
         <div className="ticket-edge text-navy dark:text-sky-light relative bg-white dark:bg-navy rounded-t-2xl rounded-b-md shadow-2xl overflow-visible">
           <div className="ticket-notch text-white dark:text-navy-dark" />
-
           <div className="p-7 sm:p-8">
             <div className="flex items-start justify-between mb-1">
               <p className="text-xs tracking-widest uppercase font-semibold text-amber">
@@ -52,7 +50,6 @@ function AuthModal({ onClose }) {
                 <X size={20} />
               </button>
             </div>
-
             {!role && (
               <>
                 <h2 className="font-display text-2xl font-semibold mt-2 mb-5">
@@ -74,7 +71,6 @@ function AuthModal({ onClose }) {
                 </div>
               </>
             )}
-
             {role && (
               <>
                 <button
@@ -83,14 +79,12 @@ function AuthModal({ onClose }) {
                 >
                   ← Back
                 </button>
-
                 <h2 className="font-display text-2xl font-semibold mb-1">
                   {isSignup ? "Create account" : "Welcome back"}
                 </h2>
                 <p className="text-sm text-navy/60 dark:text-sky-light/60 mb-5 flex items-center gap-1">
                   <Stamp size={14} /> as a {role === "customer" ? "customer" : "worker"}
                 </p>
-
                 <form onSubmit={handleSubmit} className="space-y-3">
                   {isSignup && (
                     <>
@@ -140,7 +134,6 @@ function AuthModal({ onClose }) {
                     {isSignup ? "Log in" : "Sign up"}
                   </span>
                 </p>
-
                 {message && (
                   <p className="text-sm text-center mt-3 text-amber font-medium">{message}</p>
                 )}
@@ -152,5 +145,4 @@ function AuthModal({ onClose }) {
     </div>
   );
 }
-
 export default AuthModal;
