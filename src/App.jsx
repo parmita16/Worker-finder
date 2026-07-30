@@ -7,7 +7,6 @@ import WorkerDetails from "./pages/WorkerDetails";
 import WorkerRegister from "./pages/WorkerRegister";
 import NotFound from "./pages/NotFound";
 import "./index.css";
-
 function App() {
   return (
     <ThemeProvider>
@@ -24,5 +23,4 @@ function App() {
     </ThemeProvider>
   );
 }
-
 export default App;
