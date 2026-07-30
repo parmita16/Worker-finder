@@ -44,7 +44,6 @@ function Home() {
             skilled tradespeople you can actually trust !! All verified, reviewed,
             and a call away.
           </p>
-
           <div className="mt-9 flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => setShowAuth(true)}
@@ -59,8 +58,7 @@ function Home() {
               Register as a worker
             </button>
           </div>
-            
-          {/* trust strip - styled as ticket stubs */}
+          {}
           <div className="mt-16 grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto">
             {[
               ["ALL", "Verified workers"],
@@ -82,8 +80,7 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* ABOUT / WHY BLUE-COLLAR WORKERS MATTER */}
+      {}
       <section id="about" className="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div>
@@ -107,7 +104,6 @@ function Home() {
               has always deserved.
             </p>
           </div>
-
           <div className="grid grid-cols-2 gap-4">
             {[
               [ShieldCheck, "Verified identity", "Every worker's details are confirmed before they're listed."],
@@ -129,8 +125,7 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* TRADES GRID */}
+      {}
       <section id="trades" className="bg-white dark:bg-navy py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-5 sm:px-8">
           <div className="text-center mb-14">
@@ -141,7 +136,6 @@ function Home() {
               Whom can we find you today?
             </h2>
           </div>
-
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-6">
             {trades.map(({ name, icon: Icon }) => (
               <button
@@ -156,8 +150,7 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* HOW IT WORKS - real sequence, numbering is earned here */}
+      {}
       <section id="how" className="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-28">
         <div className="text-center mb-14">
           <p className="text-xs tracking-widest uppercase font-semibold text-amber mb-4">
@@ -167,7 +160,6 @@ function Home() {
             Three steps, no middleman.
           </h2>
         </div>
-
         <div className="grid sm:grid-cols-3 gap-8">
           {[
             ["01", "Tell us what you need", "Pick a trade : plumbing, wiring, carpentry and describe the job."],
@@ -186,8 +178,7 @@ function Home() {
           ))}
         </div>
       </section>
-
-      {/* TESTIMONIAL */}
+      {}
       <section className="bg-navy dark:bg-black py-20 sm:py-24">
         <div className="max-w-2xl mx-auto px-5 text-center text-white">
           <Quote size={28} className="mx-auto text-amber mb-6" />
@@ -199,8 +190,7 @@ function Home() {
           <p className="mt-6 text-sm text-white/60">— Feint, Kathmandu</p>
         </div>
       </section>
-
-      {/* FINAL CTA */}
+      {}
       <section className="max-w-6xl mx-auto px-5 sm:px-8 py-20 sm:py-28 text-center">
         <h2 className="font-display text-3xl sm:text-4xl font-semibold">
           Ready when you are.
@@ -223,8 +213,7 @@ function Home() {
   </button>
 </div>
       </section>
-
-      {/* FOOTER */}
+      {}
       <footer className="border-t border-sky-deep/10 dark:border-white/10 py-10">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-navy/60 dark:text-sky-light/60">
           <span className="font-display text-lg font-semibold text-sky-deep dark:text-sky-light">
@@ -233,10 +222,8 @@ function Home() {
           <p>© 2026 Sewa. Built with care, one trade at a time. <br></br> With pure passion by Parmii.Swann!!</p>
         </div>
       </footer>
-
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </div>
   );
 }
-
 export default Home;
