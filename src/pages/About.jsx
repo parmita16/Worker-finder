@@ -47,8 +47,7 @@ function About() {
           </p>
         </div>
       </section>
-
-      {/* VALUES */}
+      {}
       <section className="bg-white dark:bg-navy py-16 sm:py-20">
         <div className="max-w-6xl mx-auto px-5 sm:px-8">
           <div className="text-center mb-12">
@@ -59,7 +58,6 @@ function About() {
               Three things Sewa won't compromise on.
             </h2>
           </div>
-
           <div className="grid sm:grid-cols-3 gap-6">
             {[
               [ShieldCheck, "Trust first", "Every worker profile is meant to be verifiable i.e. real names, real experience, real contact details."],
@@ -80,8 +78,7 @@ function About() {
           </div>
         </div>
       </section>
-
-      {/* WHO IT'S FOR */}
+      {}
       <section className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20">
         <div className="grid sm:grid-cols-2 gap-6">
           <div className="ticket-edge relative bg-white dark:bg-navy rounded-t-2xl rounded-b-md shadow-sm p-8">
@@ -98,7 +95,6 @@ function About() {
               agency, no guessing.
             </p>
           </div>
-
           <div className="ticket-edge relative bg-white dark:bg-navy rounded-t-2xl rounded-b-md shadow-sm p-8">
             <Target size={22} className="text-amber mb-4" />
             <p className="text-xs tracking-widest uppercase font-semibold text-amber mb-2">
@@ -115,8 +111,7 @@ function About() {
           </div>
         </div>
       </section>
-
-      {/* CLOSING NOTE */}
+      {}
       <section className="bg-navy dark:bg-black py-16 sm:py-20">
         <div className="max-w-2xl mx-auto px-5 text-center text-white">
           <Heart size={24} className="mx-auto text-amber mb-5" />
@@ -127,8 +122,7 @@ function About() {
           </p>
         </div>
       </section>
-
-      {/* CTA */}
+      {}
       <section className="max-w-6xl mx-auto px-5 sm:px-8 py-16 sm:py-20 text-center">
         <h2 className="font-display text-3xl sm:text-4xl font-semibold">
           See it in action.
@@ -143,7 +137,6 @@ function About() {
           Get started <ArrowRight size={18} />
         </button>
       </section>
-
       <footer className="border-t border-sky-deep/10 dark:border-white/10 py-10">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-navy/60 dark:text-sky-light/60">
           <span className="font-display text-lg font-semibold text-sky-deep dark:text-sky-light">
@@ -152,10 +145,8 @@ function About() {
           <p>© 2026 Sewa. Built with care, one trade at a time.<br></br>With pure passion by Parmii.Swann!!</p>
         </div>
       </footer>
-
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </div>
   );
 }
-
 export default About;
