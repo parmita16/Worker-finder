@@ -1,6 +1,4 @@
-// src/pages/NotFound.jsx
 import { Link } from "react-router-dom";
-
 function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-sky-light dark:bg-navy-dark text-navy dark:text-sky-light px-5 text-center">
@@ -18,5 +16,4 @@ function NotFound() {
     </div>
   );
 }
-
 export default NotFound;
