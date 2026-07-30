@@ -8,7 +8,6 @@ import Navbar from "../components/Navbar";
 import AuthModal from "../components/AuthModal";
 import WorkerCard from "../components/WorkerCard";
 import { getAllWorkers } from "../utils/getAllWorkers";
-
 const trades = [
   { name: "Carpenter", icon: Hammer },
   { name: "Plumber", icon: Wrench },
@@ -19,34 +18,24 @@ const trades = [
   { name: "Tailor", icon: Scissors },
   { name: "Mechanic", icon: Car },
 ];
-
 function Services() {
   const [showAuth, setShowAuth] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedTrade, setSelectedTrade] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState("rating"); // "rating" | "experience" | "name"
-
-  // read merged workers fresh each time this page loads, so newly
-  // registered workers show up without needing a backend
+  const [sortBy, setSortBy] = useState("rating"); 
   const allWorkers = useMemo(() => getAllWorkers(), []);
-
   useEffect(() => {
     const tradeFromUrl = searchParams.get("trade");
     if (tradeFromUrl) setSelectedTrade(tradeFromUrl);
   }, [searchParams]);
-
   const handleSelectTrade = (name) => {
     setSelectedTrade(name);
     setSearchParams({ trade: name });
   };
-
   const filteredWorkers = useMemo(() => {
     if (!selectedTrade) return [];
-
     let result = allWorkers.filter((w) => w.trade === selectedTrade);
-
-    // search by name or address
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
       result = result.filter(
@@ -55,22 +44,17 @@ function Services() {
           w.address.toLowerCase().includes(term)
       );
     }
-
-    // sort
     result = [...result].sort((a, b) => {
       if (sortBy === "rating") return b.rating - a.rating;
       if (sortBy === "experience") return b.experience - a.experience;
       if (sortBy === "name") return a.name.localeCompare(b.name);
       return 0;
     });
-
     return result;
   }, [allWorkers, selectedTrade, searchTerm, sortBy]);
-
   return (
     <div className="bg-sky-light dark:bg-navy-dark text-navy dark:text-sky-light min-h-screen">
       <Navbar onLoginClick={() => setShowAuth(true)} />
-
       <section className="max-w-6xl mx-auto px-5 sm:px-8 pt-16 sm:pt-20 pb-10 text-center">
         <p className="text-xs sm:text-sm tracking-[0.2em] uppercase font-semibold text-amber mb-5">
           Services
@@ -82,7 +66,6 @@ function Services() {
           Pick a trade to see verified workers near you.
         </p>
       </section>
-
       <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-10">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
           {trades.map(({ name, icon: Icon }) => {
@@ -104,8 +87,7 @@ function Services() {
           })}
         </div>
       </section>
-
-      {/* search + sort - only shown once a trade is picked */}
+      {}
       {selectedTrade && (
         <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-8">
           <div className="flex flex-col sm:flex-row gap-3">
@@ -134,14 +116,12 @@ function Services() {
           </div>
         </section>
       )}
-
       <section className="max-w-6xl mx-auto px-5 sm:px-8 pb-24">
         {!selectedTrade && (
           <div className="text-center py-16 text-navy/50 dark:text-sky-light/50">
             <p className="font-display text-lg">Choose a trade above to see workers.</p>
           </div>
         )}
-
         {selectedTrade && filteredWorkers.length === 0 && (
           <div className="text-center py-16">
             <SearchX size={32} className="mx-auto text-navy/30 dark:text-sky-light/30 mb-4" />
@@ -153,7 +133,6 @@ function Services() {
             </p>
           </div>
         )}
-
         {selectedTrade && filteredWorkers.length > 0 && (
           <>
             <p className="text-sm text-navy/60 dark:text-sky-light/60 mb-6">
@@ -168,7 +147,6 @@ function Services() {
           </>
         )}
       </section>
-
       <footer className="border-t border-sky-deep/10 dark:border-white/10 py-10">
         <div className="max-w-6xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-navy/60 dark:text-sky-light/60">
           <span className="font-display text-lg font-semibold text-sky-deep dark:text-sky-light">
@@ -177,10 +155,8 @@ function Services() {
           <p>© 2026 Sewa. Built with care, one trade at a time.<br></br> With pure passion by Parmii.Swann!!</p>
         </div>
       </footer>
-
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
     </div>
   );
 }
-
 export default Services;
